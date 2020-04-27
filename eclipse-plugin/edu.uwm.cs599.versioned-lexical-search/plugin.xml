@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Main Category"
+            id="edu.uwm.cs599.versioned-lexical-search.commands.category">
+      </category>
+      <command
+            name="Search Command"
+            categoryId="edu.uwm.cs599.versioned-lexical-search.commands.category"
+            id="edu.uwm.cs599.versioned-lexical-search.commands.searchCommand">
+      </command>
+      <command
+            categoryId="edu.uwm.cs599.versioned-lexical-search.commands.category"
+            id="edu.uwm.cs599.versioned-lexical-search.metricsCommand"
+            name="Metrics Command">
+      </command>
+      <command
+            categoryId="edu.uwm.cs599.versioned-lexical-search.commands.category"
+            id="edu.uwm.cs599.versioned-lexical-search.rebuildCommand"
+            name="Rebuild Command">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="edu.uwm.cs599.versioned-lexical-search.commands.searchCommand"
+            class="edu.uwm.cs599.versionedlexicalsearch.handlers.SearchHandler">
+      </handler>
+      <handler
+            class="edu.uwm.cs599.versionedlexicalsearch.handlers.MetricsHandler"
+            commandId="edu.uwm.cs599.versioned-lexical-search.metricsCommand">
+      </handler>
+      <handler
+            class="edu.uwm.cs599.versionedlexicalsearch.handlers.RebuildHandler"
+            commandId="edu.uwm.cs599.versioned-lexical-search.rebuildCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Versioned Lexical Search"
+               mnemonic="V"
+               id="edu.uwm.cs599.versioned-lexical-search.menus.vlsMenu">
+            <command
+                  commandId="edu.uwm.cs599.versioned-lexical-search.commands.searchCommand"
+                  id="edu.uwm.cs599.versioned-lexical-search.menus.searchHistory"
+                  label="Search Repository History"
+                  mnemonic="S"
+                  style="push">
+            </command>
+            <command
+                  commandId="edu.uwm.cs599.versioned-lexical-search.rebuildCommand"
+                  id="edu.uwm.cs599.versioned-lexical-search.menus.rebuildDatabase"
+                  label="Rebuild Search Database"
+                  mnemonic="R"
+                  style="push">
+            </command>
+            <command
+                  commandId="edu.uwm.cs599.versioned-lexical-search.metricsCommand"
+                  id="edu.uwm.cs599.versioned-lexical-search.menus.showMetrics"
+                  label="Show Metrics"
+                  mnemonic="M"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="edu.uwm.cs599.versioned-lexical-search.toolbars.mainToolbar">
+            <command
+                  commandId="edu.uwm.cs599.versioned-lexical-search.commands.searchCommand"
+                  icon="icons/sample.gif"
+                  tooltip="Hello world"
+                  id="edu.uwm.cs599.versioned-lexical-search.toolbars.searchCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="edu.uwm.cs599.versioned-lexical-search"
+            name="Versioned Lexical Search">
+      </category>
+      <view
+            category="edu.uwm.cs599.versioned-lexical-search"
+            class="edu.uwm.cs599.versionedlexicalsearch.views.MetricsGraph"
+            icon="icons/sample.gif"
+            id="edu.uwm.cs599.versionedlexicalsearch.views.MetricsGraph"
+            name="Metrics Graph">
+      </view>
+      <view
+            category="edu.uwm.cs599.versioned-lexical-search"
+            class="edu.uwm.cs599.versionedlexicalsearch.views.QueryResults"
+            id="edu.uwm.cs599.versionedlexicalsearch.views.QueryResults"
+            name="Query Results">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="edu.uwm.cs599.versionedlexicalsearch.views.MetricsGraph"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
+</plugin>
